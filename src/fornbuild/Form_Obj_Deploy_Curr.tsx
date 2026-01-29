@@ -149,7 +149,7 @@ export const Form_Obj_Deploy_pre = ({ props }: OBJ) => {
   };
 
   return (
-    <div className="root">
+    <div className="flex flex-col gap-2 items-start">
       <div className="b_container">
         <div id="control_container" style={{ alignItems: "center" }}>
           <br />
@@ -159,7 +159,7 @@ export const Form_Obj_Deploy_pre = ({ props }: OBJ) => {
           </div>
           <br />
           <button id="btnA" onClick={setValue}>
-            Inpur
+            Input
           </button>
         </div>
       </div>

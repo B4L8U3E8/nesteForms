@@ -5,6 +5,10 @@ import "./App(FormObj).css";
 import React from "react";
 import { useRef } from "react";
 import { Form_Obj_Deploy_pre } from "./Form_Obj_Deploy_Curr";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+
+
 
 // const Handle = React.memo(({ value, name, onChange }:
 // { value: string; name:string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) =>
@@ -128,29 +132,11 @@ export const Form_Build_obj_Curr = () => {
     setExpObj(object);
   };
 
-  //   const InpStyle: CSSProperties = {
-  //     display: "flex",
-  //     width: "100px",
-  //     height: "20px",
-  //     backgroundColor: "rgb(234, 227, 175)",
-  //     color: "black",
-  //     borderStyle: "solid",
-  //     borderColor: "rgb(6, 6, 51)",
-  //     borderWidth: "3px",
-  //     borderRadius: "9px",
-  //     fontSize: "18px",
-  //     fontStyle: "bold",
-  //     fontFamily: "Times New Roman",
-  //     position: "relative",
-  //     left: "50px",
-  //   };
-
   const Disp = (DO: OBJ) => {
     return Object.entries(DO).map(([key, val]) => {
       if (typeof val === "object") {
         return (
-          <div key={key} id="data_containerA">
-            <span style={{ display: "flex" }}>
+          <div key={key} id="data_containerA" className=" flex flex-col gap-2">
               {key}:
               <input
                 style={{ position: "relative", left: "50px" }}
@@ -159,14 +145,12 @@ export const Form_Build_obj_Curr = () => {
                 name={key}
                 onChange={HandlecurrKey}
               />
-              <button
-                style={{ marginLeft: "80px", marginBottom: "15px" }}
-                id="btnC"
-                // onClick={()=>UpdatedObj(object, key)}
-                onClick={() => UpdatedObj(object, key)}
-              >
-                ADD
-              </button>
+
+              <Button onClick={() => UpdatedObj(object, key)} 
+                className="w-24 h-6 bg-green rounded-xl">    ADD</Button>
+         
+             
+          
               <button
                 style={{ marginLeft: "10px", marginBottom: "15px" }}
                 id="btnC"
@@ -174,11 +158,7 @@ export const Form_Build_obj_Curr = () => {
               >
                 DEL
               </button>
-              {/* <button style={{marginLeft:'10px', marginBottom:'15px'}} 
-                                                id='btnC' onClick={()=>SplitObj(object, key)}>         
-                                                Split 
-                                        </button>  */}
-            </span>
+      
             {Disp(val)}
           </div>
         );
@@ -195,18 +175,19 @@ export const Form_Build_obj_Curr = () => {
     });
   };
 
-  //   console.log("Render Counter:" + j);
+
   return (
-    <div className="r" style={{ display: "flex", flexDirection: "column" }}>
+    <div className="flex flex-col gap-4">
       {post === "P" ? (
         <Form_Obj_Deploy_pre props={object} />
       ) : (
-        <div className="root">
-          <div className="b_container">
-            <div id="control_container" style={{ alignItems: "center" }}>
+        <div className="flex flex-col items-start gap-2">
+          <div className="flex flex-row gap-2 items-start">
+            <div  className="flex flex-col gap-2 items-start">
               <br />
-              <input
-                id="inp_1"
+              <Input
+              className="ml-p2 indent-2"
+        
                 type="text"
                 ref={PrimObjName}
                 onChange={HandleFormName}
@@ -214,10 +195,11 @@ export const Form_Build_obj_Curr = () => {
               <br />
               <div> {dynatmicKey} </div>
               <br />
-              <button id="btnA" onClick={() => Initial_Object(object)}>
+              
+              <Button onClick={() => Initial_Object(object)} className="p-2">
                 {" "}
                 Create{" "}
-              </button>
+              </Button>
               <br />
 
               <button id="btnA" onClick={PostObj}>
@@ -225,17 +207,6 @@ export const Form_Build_obj_Curr = () => {
                 POST{" "}
               </button>
             </div>
-          </div>
-
-          <div className="b_container">
-            <div className="data_container" style={{ fontSize: "18px" }}>
-              {JSON.stringify(object)}
-              <br />
-              Stored Key Set: {JSON.stringify(StoredKeySet)}
-              <br />
-            </div>
-          </div>
-
           <div className="b_container">
             <div
               className="data_container"
@@ -248,76 +219,21 @@ export const Form_Build_obj_Curr = () => {
               {Disp(object)}
             </div>
           </div>
+
         </div>
+          </div>
+
+      
+
       )}
+          <div className="b_container">
+            <div className="data_container" style={{ fontSize: "18px" }}>
+              {JSON.stringify(object)}
+              <br />
+              Stored Key Set: {JSON.stringify(StoredKeySet)}
+              <br />
+            </div>
+          </div>
     </div>
   );
 };
-// type C = [number, number]
-// let x:number
-// let y:number
-// x=9;
-// y=6;
-// const CO:C = [x,y]
-// const T = {A:CO}
-// type Ti = {T: {[string:string]:string}}
-// const PR:Ti = {T:{"A":"d"}}
-// console.log(PR)
-// console.log(T)
-// console.log(T.A)
-// console.log(T.A[0], " : " ,T.A[1])
-
-// const A = {"A":{"B":{"C":{}}}}
-
-// console.log(Object.keys(A.A.B))
-
-// const T = {
-//   A: { a: {}, b: { "b.2": { "b.2.1": {}, "b.2.2": {} }, "b.3": {} } },
-// };
-
-// Object.entries(T).forEach(([k,v])=>{
-//     console.log(k, " " , v)
-// })
-
-// Object.entries(T).forEach(([k,v])=>{
-//     console.log(k, " " , v)
-// })
-// import type { ChangeEvent } from "react";
-// import { Form_Obj_Deploy_pre } from "./Form_Obj_Deploy_Curr";
-
-// interface InputFieldProps {
-//   value: string;
-//   onChange: (value: string) => void;
-// }
-
-// const InputField: React.FC<InputFieldProps> = React.memo(
-//   ({ value, onChange }) => {
-//     const handleChange = useCallback(
-//       (event: ChangeEvent<HTMLInputElement>) => {
-//         onChange(event.target.value);
-//       },
-//       [onChange],
-//     );
-
-//     return (
-//       <input id="inp_1" type="text" value={value} onChange={handleChange} />
-//     );
-//   },
-// );
-
-// const App: React.FC = () => {
-//   j = j + 1;
-//   console.log(j);
-//   const [inputValue, setInputValue] = useState("");
-
-//   const handleInputChange = (value: string) => {
-//     setInputValue(value);
-//   };
-
-//   return (
-//     <div>
-//       <h1>Input Field Example</h1>
-//       <InputField value={inputValue} onChange={handleInputChange} />
-//     </div>
-//   );
-// };
